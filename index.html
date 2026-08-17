@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>LedgerPro — Admin Billing</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="login" class="login-wrap">
+  <div class="login-card">
+    <div class="brand-mark">LP</div><h1>LedgerPro</h1><p>Private billing & revenue dashboard</p>
+    <form id="loginForm">
+      <input id="email" type="email" placeholder="Admin email" required>
+      <input id="password" type="password" placeholder="Password" required>
+      <button>Sign in</button><small>Demo login: admin@example.com / Admin@123</small>
+    </form>
+  </div>
+</div>
+
+<div id="app" class="app hidden">
+<aside>
+  <div class="brand"><div class="brand-mark">LP</div><div><b>LedgerPro</b><span>Billing Suite</span></div></div>
+  <nav>
+    <button data-page="dashboard" class="active">Overview</button>
+    <button data-page="customers">Customers</button>
+    <button data-page="invoice">Create Invoice</button>
+    <button data-page="invoices">Invoices</button>
+  </nav>
+  <button id="logout" class="logout">Log out</button>
+</aside>
+<main>
+<header><div><p class="eyebrow">PRIVATE ADMIN</p><h2 id="pageTitle">Overview</h2></div><div class="avatar">A</div></header>
+
+<section id="dashboard" class="page">
+<div class="cards">
+ <div class="card"><span>Total Revenue</span><strong id="totalRevenue">₹0</strong><small>All paid invoices</small></div>
+ <div class="card"><span>This Month</span><strong id="monthRevenue">₹0</strong><small>Paid this month</small></div>
+ <div class="card"><span>Pending</span><strong id="pendingRevenue">₹0</strong><small>Outstanding amount</small></div>
+ <div class="card"><span>Invoices</span><strong id="invoiceCount">0</strong><small>Total created</small></div>
+</div>
+<div class="panel"><div class="panel-head"><h3>Recent invoices</h3><button class="ghost" data-go="invoice">+ New invoice</button></div><div id="recent"></div></div>
+</section>
+
+<section id="customers" class="page hidden">
+<div class="panel"><div class="panel-head"><h3>Customers</h3><button class="primary" id="addCustomerBtn">+ Add customer</button></div>
+<div id="customerList"></div></div></section>
+
+<section id="invoice" class="page hidden">
+<div class="panel form-panel"><div class="panel-head"><h3>Create invoice</h3><span class="pill">UPI QR enabled</span></div>
+<form id="invoiceForm" class="grid">
+<input id="customerName" placeholder="Customer name" required>
+<input id="customerBusiness" placeholder="Business / company">
+<input id="customerPhone" placeholder="Phone">
+<input id="service" placeholder="Service / item" required>
+<input id="amount" type="number" min="1" placeholder="Amount (₹)" required>
+<select id="status"><option value="Pending">Pending</option><option value="Paid">Paid</option></select>
+<input id="upi" placeholder="Your UPI ID e.g. name@upi" required>
+<input id="note" placeholder="Note (optional)">
+<div class="full"><button class="primary">Generate invoice</button></div>
+</form></div></section>
+
+<section id="invoices" class="page hidden">
+<div class="panel"><div class="panel-head"><h3>All invoices</h3><input id="search" class="search" placeholder="Search invoice/customer"></div><div id="invoiceList"></div></div></section>
+
+</main></div>
+
+<div id="modal" class="modal hidden"><div class="invoice-preview">
+<button class="close" id="closeModal">×</button><div id="preview"></div>
+</div></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="app.js"></script>
+</body></html>
